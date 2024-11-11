@@ -1,0 +1,76 @@
+### Necessário para pegar o token    
+### Post  
+# @name loginAutenticado  
+POST http://localhost:40000/Login HTTP/1.1  
+content-type: application/json  
+  
+{      
+    "UserName": "qwe",  
+    "Password": "qwe"  
+}  
+### Seta o token  
+@accessToken = {{loginAutenticado.response.body.$.token}}  
+@username = {{loginAutenticado.response.body.$.username}}  
+
+
+### teste de buscar todos os alunos  
+GET http://localhost:40000/GetAllAgencias HTTP/1.1  
+content-type: application/json  
+Authorization: Bearer {{accessToken}}  
+
+{      
+    
+}  
+
+### teste de buscar aluno por ID  
+POST http://localhost:40000/GetAgenciaByID HTTP/1.1  
+content-type: application/json  
+Authorization: Bearer {{accessToken}}  
+
+{     
+    "agenciaid": 1  
+}  
+
+### teste de inserção de aluno  
+POST http://localhost:40000/InsertAgencia HTTP/1.1  
+content-type: application/json  
+Authorization: Bearer {{accessToken}}   
+
+{      
+      
+    "codigo": "0622-x",   
+    "nome": "Votuporanga",  
+    "endreco": "Rua das Couves",
+    "email": "banco@gmail.com",
+    "telefone": "111111111",
+    "saldo": 10,
+    "dataabertura": "10/10/2010",
+    "deleted": false      
+}  
+
+
+### teste de atualização de aluno  
+POST http://localhost:40000/UpdateAgencia HTTP/1.1  
+content-type: application/json  
+Authorization: Bearer {{accessToken}}  
+
+{      
+      
+    "codigo": "0622-x_teste",   
+    "nome": "Votuporanga",  
+    "endreco": "Rua das Couves",
+    "email": "banco@gmail.com",
+    "telefone": "111111111",
+    "saldo": 10,
+    "dataabertura": "10/10/2010",
+    "deleted": false      
+}  
+
+### teste de atualização de aluno  
+POST http://localhost:40000/DeleteAgencia HTTP/1.1  
+content-type: application/json  
+Authorization: Bearer {{accessToken}}  
+
+{      
+    "agenciaid": 1   
+}  
