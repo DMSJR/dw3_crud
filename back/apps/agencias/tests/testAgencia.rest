@@ -37,10 +37,9 @@ content-type: application/json
 Authorization: Bearer {{accessToken}}   
 
 {      
-      
-    "codigo": "0622-x",   
+    "codigo": "0622",   
     "nome": "Votuporanga",  
-    "endreco": "Rua das Couves",
+    "endereco": "Rua das Couves",
     "email": "banco@gmail.com",
     "telefone": "111111111",
     "saldo": 10,
@@ -55,9 +54,10 @@ content-type: application/json
 Authorization: Bearer {{accessToken}}  
 
 {      
-      
-    "codigo": "0622-x_teste",   
-    "nome": "Votuporanga",  
+     
+    "agenciaid": 1, 
+    "codigo": "0622",   
+    "nome": "Votuporanga_teste",  
     "endreco": "Rua das Couves",
     "email": "banco@gmail.com",
     "telefone": "111111111",

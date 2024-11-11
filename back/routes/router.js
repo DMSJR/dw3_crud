@@ -19,7 +19,7 @@ routerApp.get("/getAllAgencias", appLogin.AutenticaJWT, appAgencias.getAllAgenci
 routerApp.post("/getAgenciaByID", appLogin.AutenticaJWT, appAgencias.getAgenciaByID);
 routerApp.post("/insertAgencia", appLogin.AutenticaJWT, appAgencias.insertAgencia);
 routerApp.post("/updateAgencia", appLogin.AutenticaJWT, appAgencias.updateAgencia);
-routerApp.post("/DeleteAgencia", appLogin.AutenticaJWT, appAgencias.DeleteAgencia);
+routerApp.post("/DeleteAgencia", appLogin.AutenticaJWT, appAgencias.deleteAgencia);
 
 // Rota Login
 routerApp.post("/Login", appLogin.Login);

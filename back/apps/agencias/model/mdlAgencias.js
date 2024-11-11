@@ -37,10 +37,12 @@ const insertAgencia = async (agenciaREGPar) => {
         ]
       )
     ).rowCount;
-  } catch (error) {
-    msg = "[mdlAgencias|insertAgencias] " + error.detail;
+  }  catch (error) {
+    console.error("Erro ao inserir agência:", error);  // Exibe o erro completo
+    msg = "[mdlAgencias|insertAgencias] " + (error.message || error);
     linhasAfetadas = -1;
   }
+  
 
   return { msg, linhasAfetadas };
 };
@@ -51,35 +53,38 @@ const UpdateAgencia = async (agenciaREGPar) => {
   try {
     linhasAfetadas = (
       await db.query(
-        "UPDATE agencia SET " +
+        "UPDATE agencias SET " +
           "codigo = $2, " +
           "nome = $3, " +
           "endereco = $4, " +
           "email = $5, " +
           "telefone = $6, " +
           "saldo = $7, " +
-          "dataabertura = $8 " +
-          "deleted = $9" +
+          "dataabertura = $8, " +  // Adicionada vírgula aqui
+          "deleted = $9 " +  // Adicionada vírgula aqui
           "WHERE agenciaid = $1",
         [
-            agenciaREGPar.codigo,
-            agenciaREGPar.nome,
-            agenciaREGPar.endereco,
-            agenciaREGPar.email,
-            agenciaREGPar.telefone,
-            agenciaREGPar.saldo,
-            agenciaREGPar.dataabertura,
-            agenciaREGPar.deleted,
+          agenciaREGPar.agenciaid,  // $1 deve ser o ID da agência
+          agenciaREGPar.codigo,
+          agenciaREGPar.nome,
+          agenciaREGPar.endereco,
+          agenciaREGPar.email,
+          agenciaREGPar.telefone,
+          agenciaREGPar.saldo,
+          agenciaREGPar.dataabertura,
+          agenciaREGPar.deleted,
         ]
       )
     ).rowCount;
   } catch (error) {
-    msg = "[mdlAgencias|updateAgencia] " + error.detail;
+    msg = "[mdlAgencias|updateAgencia] " + (error.detail || error.message);
     linhasAfetadas = -1;
   }
-
-  return { msg, linhasAfetadas };
+  return { linhasAfetadas, msg };
 };
+
+
+  
 
 const DeleteAgencia = async (agenciaREGPar) => {
   let linhasAfetadas;
