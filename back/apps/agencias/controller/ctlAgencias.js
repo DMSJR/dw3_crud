@@ -39,7 +39,7 @@ const updateAgencia = (request, res) =>
 const deleteAgencia = (request, res) =>
   (async () => {
     const agenciaREG = request.body;
-    let { msg, linhasAfetadas } = await mdlAgencias.DeleteAgencia(agenciaREGREG);
+    let { msg, linhasAfetadas } = await mdlAgencias.DeleteAgencia(agenciaREG);
     res.json({ "status": msg, "linhasAfetadas": linhasAfetadas });
   })();
 
